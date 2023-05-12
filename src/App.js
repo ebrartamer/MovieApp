@@ -1,9 +1,17 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
+import MovieList from './components/MovieList';
+import SearchBox from './components/SearchBox'
 
 function App() {
+  const theme = extendTheme({
+    config: {
+      initialColorMode: "dark",
+      useSystemColorMode: false,
+    },
+  })
 
   const [movie, setMovie] = useState([]);
   const [category, setCategory] = useState('popular');
@@ -23,9 +31,17 @@ function App() {
 
   return (
     <div className="App">
-      <ChakraProvider>
-      <Navbar/>
+      <ChakraProvider theme={theme}>
+
+      <Navbar
+      searchBox = {SearchBox}/>
+
+      <Box  overflowX='scroll'>
+      <MovieList
+      movies={movie}/>
+      </Box>
       
+
       </ChakraProvider>
     </div>
   );

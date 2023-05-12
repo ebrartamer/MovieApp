@@ -1,12 +1,19 @@
 import { Box, Button, ButtonGroup, Container, Flex, HStack, IconButton, useBreakpointValue } from '@chakra-ui/react';
-import React from 'react' 
+import React, { useState } from 'react' 
 import { FiSearch } from 'react-icons/fi'
 
- const Navbar = () => {
-    const isDesktop = useBreakpointValue({base: false, md:true}) // this is a hook from chackra ui
+ const Navbar = (props) => {
+  const SearchBox = props.searchBox  
+  const isDesktop = useBreakpointValue({base: false, md:true}) // this is a hook from chackra ui
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+
+  const handleSearchClick = () => {
+    setIsSearchOpen(!isSearchOpen);
+  }
+
   return (
     <Box as="section" pb={{ base: '12', md: '24' }}>
-      <Box as="nav" bg="bg-transparent" boxShadow="sm">
+      <Box as="nav" bg="bg-transparent" boxShadow="sm" top={'0'} width={'100%'}>
         <Container py={{ base: '4', lg: '5' }}>
           <HStack spacing="100" justify="space-around">
             <Button
@@ -20,27 +27,30 @@ import { FiSearch } from 'react-icons/fi'
               <Flex justify="space-around" flex="1">
                 <HStack spacing="200">
                 <ButtonGroup variant="link" spacing="8">
-                  {['Movies', 'Series'].map((item) => (
+                  {['Movies', 'Series', 'Favourites'].map((item) => (
                     <Button key={item}>{item}</Button>
                   ))}
                 </ButtonGroup>
                 <IconButton
+                onClick={handleSearchClick}
                   variant='ghost'
                   icon={<FiSearch fontSize= '1.5rem'/>}
-                  aria-label='Open Menu'
+                  aria-label='Search Movies'
                   />
                   </HStack>
               </Flex>
             ) : (
               <IconButton
+                onClick={handleSearchClick}
                 variant="ghost"
                 icon={<FiSearch fontSize="1.25rem" />}
-                aria-label="Open Menu"
+                aria-label="Search Movies"
               />
             )}
           </HStack>
         </Container>
       </Box>
+      {isSearchOpen && <SearchBox/>}
     </Box>
   )
 }
