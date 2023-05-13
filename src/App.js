@@ -12,13 +12,12 @@ function App() {
       useSystemColorMode: false,
     },
   })
-
+  
   const [movie, setMovie] = useState([]);
-  const [category, setCategory] = useState('popular');
-  const [searchMovie, setSearchMovie] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   const getMovieRequest =async () =>{
-      const url = `https://api.themoviedb.org/3/movie/${category}?api_key=${process.env.REACT_APP_API_KEY}&query=${searchMovie}`;
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchValue}`;
       const response = await fetch(url);
       const responseJson = await response.json();
       setMovie(responseJson.results)
@@ -26,15 +25,19 @@ function App() {
   }
 
   useEffect(()=> {
-      getMovieRequest(searchMovie);
-  },[searchMovie, category])
+      getMovieRequest(searchValue);
+  },[searchValue])
 
   return (
     <div className="App">
       <ChakraProvider theme={theme}>
 
-      <Navbar
-      searchBox = {SearchBox}/>
+      <Navbar/>
+
+      <SearchBox 
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      />
 
       <Box  overflowX='scroll'>
       <MovieList

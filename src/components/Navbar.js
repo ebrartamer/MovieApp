@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 
  const Navbar = (props) => {
-  const SearchBox = props.searchBox  
   const isDesktop = useBreakpointValue({base: false, md:true}) // this is a hook from chackra ui
   const [isSearchOpen, setIsSearchOpen] = useState(false)
 
@@ -50,7 +49,7 @@ import { FiSearch } from 'react-icons/fi'
           </HStack>
         </Container>
       </Box>
-      {isSearchOpen && <SearchBox/>}
+      {isSearchOpen }
     </Box>
   )
 }

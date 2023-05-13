@@ -1,7 +1,7 @@
 import { Input } from '@chakra-ui/react';
 import React from 'react'
 
- const SearchBox = () => {
+ const SearchBox = (props) => {
   return (
     <>
     <Input 
@@ -14,7 +14,11 @@ import React from 'react'
     alignItems={'center'}
     top={'50%'}
     left={'50%'}
-    transform={'translate(-50%, -50%)'}></Input>
+    transform={'translate(-50%, -50%)'}
+    value={props.value}
+    onChange={(event) => props.setSearchValue(event.target.value)}>
+
+    </Input>
     </>
   )
 }
