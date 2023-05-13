@@ -5,19 +5,13 @@ import React from 'react'
   return (
     <>
     <Input 
-    variant={'filled'}
-    htmlSize={4} 
-    width={'50%'} 
+    variant={'ghost'}
+    htmlSize={'lg'} 
     placeholder='Search a Movie...'
-    display={'flex'}
-    justifyContent={'center'}
-    alignItems={'center'}
-    top={'50%'}
-    left={'50%'}
-    transform={'translate(-50%, -50%)'}
     value={props.value}
-    onChange={(event) => props.setSearchValue(event.target.value)}>
-
+    onChange={(event) => props.setSearchValue(event.target.value)}
+    width={{ base: "full", md: "100%" }}>
+    
     </Input>
     </>
   )

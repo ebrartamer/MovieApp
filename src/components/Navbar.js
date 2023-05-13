@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Container, Flex, HStack, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Container, Flex, HStack, IconButton, Spacer, useBreakpointValue } from '@chakra-ui/react';
 import React, { useState } from 'react' 
 import { FiSearch } from 'react-icons/fi'
 
@@ -11,12 +11,11 @@ import { FiSearch } from 'react-icons/fi'
   }
 
   return (
-    <Box as="section" pb={{ base: '12', md: '24' }}>
-      <Box as="nav" bg="bg-transparent" boxShadow="sm" top={'0'} width={'100%'}>
-        <Container py={{ base: '4', lg: '5' }}>
-          <HStack spacing="100" justify="space-around">
+    <Box as="section" pb={{ base: '1', md: '2' }} >
+
+          <HStack spacing="300" justify="space-around">
             <Button
-             colorScheme='blue'
+             color='pink.500'
              _hover={{
                   color:'blue.500',
              }} 
@@ -27,28 +26,30 @@ import { FiSearch } from 'react-icons/fi'
                 <HStack spacing="200">
                 <ButtonGroup variant="link" spacing="8">
                   {['Movies', 'Series', 'Favourites'].map((item) => (
-                    <Button key={item}>{item}</Button>
+                    <Button key={item} color="gray.300">{item}</Button>
                   ))}
                 </ButtonGroup>
                 <IconButton
-                onClick={handleSearchClick}
-                  variant='ghost'
+                 color="gray.300"
+                  onClick={handleSearchClick}
+                  variant='filled'
                   icon={<FiSearch fontSize= '1.5rem'/>}
                   aria-label='Search Movies'
                   />
                   </HStack>
               </Flex>
             ) : (
+              
               <IconButton
+                color="gray.300"
                 onClick={handleSearchClick}
-                variant="ghost"
+                variant="filled"
                 icon={<FiSearch fontSize="1.25rem" />}
                 aria-label="Search Movies"
               />
             )}
           </HStack>
-        </Container>
-      </Box>
+
       {isSearchOpen }
     </Box>
   )
